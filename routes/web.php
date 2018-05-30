@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/slider', function () {
-    return view('slider');
-})->middleware('auth');
 
-Route::post('/slider/add/{id}', 'SliderController@add')->middleware('auth');
 
-Route::post('/slider/modify/{id}', 'SliderController@modify')->middleware('auth');
+Route::middleware('auth')->group(function(){
 
-Route::post('/slider/delete/{id}', 'SliderController@delete')->middleware('auth');
+    Route::get('/slider', function () {
+        return view('slider');
+    });
+    Route::post('/slider/add/{id}', 'SliderController@add');
+
+    Route::post('/slider/modify/{id}', 'SliderController@modify');
+
+    Route::post('/slider/delete/{id}', 'SliderController@delete');
+});
+
+
