@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/slider', function () {
+    return view('slider');
+})->middleware('auth');
+
+Route::post('/slider/add/{id}', 'SliderController@add')->middleware('auth');
+
+Route::post('/slider/modify/{id}', 'SliderController@modify')->middleware('auth');
+
+Route::post('/slider/delete/{id}', 'SliderController@delete')->middleware('auth');
